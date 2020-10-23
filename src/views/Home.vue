@@ -1,6 +1,15 @@
 <template>
-  <div class="d-flex justify-content-center">
-    <button class="w-25" v-on:click="loginSpotify">Go!</button>
+  <div id="home" class=" d-flex flex-row align-items-start">
+    <div class="w-100 ml-2 d-flex flex-column align-items-center">
+      <h1 class="title">Instafy</h1>
+      <h1 class="subtitle mt-3">Get your feed</h1>
+      <button class="w-75 mt-2 subtitle" v-on:click="loginSpotify">NOW</button>
+      <p class="mt-3">It's 1 sec, trust me</p>
+      <!-- <div class="d-flex flex-rows">
+        <h1 class="subtitle">➜</h1>
+        <button class="subtitle test" v-on:click="loginSpotify">NOW</button>
+      </div> -->
+    </div>
   </div>
 </template>
 

@@ -1,13 +1,13 @@
 <template>
-  <div class="d-flex justify-content-center">
-    <div v-if="!this.fetchedIG">
-      <h3>Your IG username:</h3>
-        <input v-model="igUsername" type="text" name="igUsername" ref="igUsername" placeholder="Username" />
-        <button v-on:click="handleIGUsername">Go!</button>
-        <p v-if="fetcheIGError != ''">{{this.fetcheIGError}}</p>
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <div id="ig" class="d-flex flex-column align-items-center" v-if="!this.fetchedIG">
+      <h1 class="title text-center">Your IG username</h1>
+      <input @keyup.enter="handleIGUsername" class="pl-3 w-50" v-model="igUsername" type="text" name="igUsername" ref="igUsername" placeholder="Username" />
+      <button class="w-50 mt-3" v-on:click="handleIGUsername">Go!</button>
+      <p class="mt-3" v-if="fetcheIGError != ''">{{this.fetcheIGError}}</p>
     </div>
 
-    <div v-if="this.fetchedIG" id="main" class="text-secondary">
+    <div v-if="this.fetchedIG" id="main">
       <div id="app" v-if="this.fetchedIG">
         <header-component :data="dataIG"></header-component>
       </div>
@@ -51,15 +51,18 @@
     },
     methods: {
       async handleIGUsername() {
-        /* fetching IG user */
-        const resIG = await fetch(`https://www.instagram.com/` + this.igUsername + `/?__a=1`)
-        const dataIG = await resIG.json();
-        if(dataIG['graphql'] == undefined) {
-          this.fetchedIG = false;
-          this.fetcheIGError = "Username not found";
+        if(this.igUsername == "") {
+          this.fetcheIGError = "Username can't be empty"
         } else {
-          this.dataIG = dataIG['graphql'];
-          this.fetchedIG = true;
+          const resIG = await fetch(`https://www.instagram.com/` + this.igUsername + `/?__a=1`)
+          const dataIG = await resIG.json();
+          if(dataIG['graphql'] == undefined) {
+            this.fetchedIG = false;
+            this.fetcheIGError = "Username not found";
+          } else {
+            this.dataIG = dataIG['graphql'];
+            this.fetchedIG = true;
+          }
         }
       },
       getArtists() {

@@ -2,36 +2,130 @@
     border: 1px solid red;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
 
+/* DARK MODE */
+@media (prefers-color-scheme: dark) {
+    #header, #underNav {
+        background-color: #010101;
+        color: #ffffff;
+    }
+}
 
+/* GENERAL */
+html {
+    height: 100vh !important;
+}
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* HOME */
+#home {
+    height: 100vh;
+    /* background-color: ; */
+    font-family: 'Rubik Mono One', sans-serif;
+}
+    #home .title {
+        font-size: 13vw;
+        font-weight: bold;
+    }
+    #home .subtitle {
+        font-size: 8vw;
+    }
+    #home button {
+        height: 2em;
+        border: none;
+        border-radius: 10px;
+    }
+        #home button:hover {
+            font-style: italic;
+        }
+    #home p {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+    }
+
+/* RESULTS/FEED */
 #main {
     box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.50); /* TEMPORARY, WE'LL MAKE EVERYTHING AESTHETIC AND REMOVE THIS */
-    width: 350px;
+    width: 400px;
     height: 600px;
-    color: black !important;
-    margin-top: 3em;
+    color: #010101 !important;
+    font-family: 'Roboto', sans-serif;
 }
+    /* IG USERNAME INPUT PAGE */
+    #ig {
+        font-family: 'Rubik Mono One', sans-serif;
+    }
+        #ig .title {
+            font-size: 5vw;
+            font-weight: bold;
+        }
+        #ig input {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 900;
+            font-size: 2.5vw;
+            border: none;
+            border-radius: 10px;
+            background-color: lightgray; /* TEMPORARY */
+        }
+        #ig button {
+            height: 10em;
+            border: none;
+            border-radius: 10px;
+        }
+            #ig button:hover {
+                font-style: italic;
+            }
+        #ig p {
+            color: #ff4b5c !important;
+        }
+
     #nav {
-        border-bottom: 2px solid lightgray;
+        font-weight: 900;
+        font-size: 1.3em;
+        letter-spacing: 1px;
     }
 
     #header {
         padding: .7em 1em 1em 1em
     }
         #header .imgProfile {
-            width: 100px;
+            width: 180px;
             border: 3px solid rgb(255, 123, 0);
             border-radius: 100%;
         }
         #header .followButton {
-            background-color: lightgray;
+            background-color: #3199F3;
             border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: .4px;
         }
+        #header .userInfoCounters {
+            font-weight: 700;
+        }
+            #header .userInfoCounters .label {
+                font-size: .8em;
+                font-weight: 500;
+                color: darkgrey
+            }
 
     #underNav {
-        border-top: 2px solid lightgray;
-        border-bottom: 1px solid lightgray;
+        font-weight: 400;
+        letter-spacing: .3px;
     }
+        #underNav span {
+            cursor: pointer;
+        }
+            #underNav .labelActive {
+                font-weight: 800;
+            }
 
     #body {
         width: 33.33%;
@@ -48,10 +142,40 @@
 
 /* MOBILE */
 @media only screen and (hover: none) and (pointer: coarse){
+    /* HOME */
+    #home > div {
+        height: 100vh;
+        justify-content: center;
+    }
+    /* MAIN > IG USERNAME INPUT PAGE */
+    #ig .title {
+        font-size: 10vw;
+    }
+    #ig input {
+        width: 60% !important;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 900;
+        font-size: 5vw;
+        height: 3em;
+        border: none;
+        border-radius: 10px;
+        background-color: lightgray; /* TEMPORARY */
+    }
+    #ig button {
+        width: 70% !important;
+        height: 5em;
+        border: none;
+        border-radius: 10px;
+    }
+    #ig p {
+        font-size: .8em;
+    }
+
+    /* RESULTS/FEED */
     #main {
         box-shadow: none;
         margin-top: 0;
         width: 100%;
         height: 100%;
-    }    
+    }
 }
