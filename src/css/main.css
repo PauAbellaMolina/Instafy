@@ -123,7 +123,10 @@ body {
         }
         #header .followButton {
             background-color: #3199F3;
+            color: inherit;
+            border: 0;
             border-radius: 4px;
+            outline: none;
             font-weight: 700;
             letter-spacing: .4px;
         }

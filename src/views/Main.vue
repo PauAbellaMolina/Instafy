@@ -7,9 +7,9 @@
       <p class="mt-3" v-if="fetcheIGError != ''">{{this.fetcheIGError}}</p>
     </div>
 
-    <div v-if="this.fetchedIG" id="main">
+    <div v-if="this.fetchedIG" ref="main" id="main">
       <div id="app" v-if="this.fetchedIG">
-        <header-component :data="dataIG"></header-component>
+        <header-component :data="dataIG" @generateImg="generateImg"></header-component>
       </div>
       <div v-if="this.page && this.fetchedArtists" id="photos" class="col-md-12 p-0 d-flex justify-content-center">
         <div id="app" class="p-0 w-100 d-flex justify-content-center"><feed-component @getTracks="getTracks" :page="page" :data="dataArtists"></feed-component></div>
@@ -23,6 +23,10 @@
 </template>
 
 <script>
+  import domtoimage from 'dom-to-image';
+  import { saveAs } from 'file-saver';
+  saveAs
+  
   import FeedComponent from '../components/FeedComponent';
   import HeaderComponent from '../components/HeaderComponent';
 
@@ -93,6 +97,14 @@
             this.fetchedIG = true;
           }
         }
+      },
+      generateImg() {
+        let node = this.$refs.main;
+
+        domtoimage.toBlob(node)
+        .then(function (blob) {
+            window.saveAs(blob, 'InstafyFeed.png');
+        });
       }
     }
   }

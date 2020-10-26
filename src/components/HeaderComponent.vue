@@ -31,9 +31,9 @@
         <span>Come get your Instafy Feed here:</span>
         <a href="https://instafy.me">instafy.me</a>
       </div>
-      <div class="w-100 followButton mt-3 d-flex justify-content-center">
+      <button class="followButton w-100 mt-3 d-flex justify-content-center" v-on:click="generateImg">
         <span class="w-75 p-1 d-flex justify-content-center">Share</span>
-      </div>
+      </button>
     </div>
   </div>
 </template>
@@ -43,5 +43,10 @@
     props: {
       data: Object,
     },
+    methods: {
+      generateImg() {
+        this.$emit('generateImg');
+      }
+    }
   } 
 </script>
