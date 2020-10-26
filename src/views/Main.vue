@@ -24,8 +24,6 @@
 
 <script>
   import domtoimage from 'dom-to-image';
-  import { saveAs } from 'file-saver';
-  saveAs
   
   import FeedComponent from '../components/FeedComponent';
   import HeaderComponent from '../components/HeaderComponent';
@@ -81,7 +79,6 @@
         const dataSongs = await resSongs.json();
         this.dataSongs = dataSongs;
         this.fetchedSongs = true;
-        console.log(this.dataSongs);
       },
       async handleIGUsername() {
         if(this.igUsername == "") {
@@ -99,11 +96,28 @@
         }
       },
       generateImg() {
-        let node = this.$refs.main;
+        const node = this.$refs.main;
+        const scale = 1000 / node.offsetWidth;
 
-        domtoimage.toBlob(node)
-        .then(function (blob) {
-            window.saveAs(blob, 'InstafyFeed.png');
+        domtoimage
+        .toPng(node, {
+            height: node.offsetHeight * scale,
+            width: node.offsetWidth * scale,
+            style: {
+            transform: "scale(" + scale + ")",
+            transformOrigin: "top left",
+            width: node.offsetWidth + "px",
+            height: node.offsetHeight + "px"
+            }
+        })
+        .then(dataUrl => {
+            const link = document.createElement('a');
+            link.download = 'InstafyFeed.png';
+            link.href = dataUrl;
+            link.click();
+        })
+        .catch(error => {
+            console.error("oops, something went wrong!", error);
         });
       }
     }
