@@ -176,7 +176,10 @@ body {
         }
 
 /* MOBILE */
-@media only screen and (hover: none) and (pointer: coarse){
+@media only screen and (max-width: 600px) {
+    #body {
+        background-color: #000 !important;
+    }
     /* HOME */
     #home > div {
         height: 100vh;

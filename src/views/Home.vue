@@ -1,5 +1,5 @@
 <template>
-  <div id="home" class=" d-flex flex-row align-items-start">
+  <div id="home" class="d-flex flex-row align-items-center">
     <div class="w-100 ml-2 d-flex flex-column align-items-center">
       <h1 class="title">Instafy</h1>
       <h1 class="subtitle mt-3">Get your feed</h1>
@@ -18,6 +18,9 @@
     name: "Home",
     methods: {
       loginSpotify() {
+        /* DEV */
+        /* window.location.href = "https://accounts.spotify.com/authorize?client_id=4cd5b87b8c4f4bc9a737094b8a0fd486&redirect_uri=http://localhost:8080&scope=user-top-read&response_type=token"; */
+        /* WEB */
         window.location.href = "https://accounts.spotify.com/authorize?client_id=4cd5b87b8c4f4bc9a737094b8a0fd486&redirect_uri=https://hopeful-ride-89ae50.netlify.app&scope=user-top-read&response_type=token";
       }
 
