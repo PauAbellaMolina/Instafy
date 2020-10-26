@@ -1,7 +1,7 @@
 <template>
-  <div class="d-flex justify-content-center align-items-center h-100">
-    <div id="ig" class="d-flex flex-column align-items-center" v-if="!this.fetchedIG">
-      <h1 class="title text-center">Your IG username</h1>
+  <div class="d-flex justify-content-center align-items-start h-100">
+    <div id="ig" class="d-flex flex-column justify-content-center align-items-center h-100" v-if="!this.fetchedIG">
+      <h1 class="title text-center">Your <span class="specialTS">IG</span> username</h1>
       <input @keyup.enter="handleIGUsername" class="pl-3 w-50" v-model="igUsername" type="text" name="igUsername" ref="igUsername" placeholder="Username" />
       <button class="w-50 mt-3" v-on:click="handleIGUsername">Go!</button>
       <p class="mt-3" v-if="fetcheIGError != ''">{{this.fetcheIGError}}</p>
@@ -11,11 +11,11 @@
       <div id="app" v-if="this.fetchedIG">
         <header-component :data="dataIG"></header-component>
       </div>
-      <div v-if="this.page && this.fetchedArtists" class="col-md-12 p-0 d-flex justify-content-center">
+      <div v-if="this.page && this.fetchedArtists" id="photos" class="col-md-12 p-0 d-flex justify-content-center">
         <div id="app" class="p-0 w-100 d-flex justify-content-center"><feed-component @getTracks="getTracks" :page="page" :data="dataArtists"></feed-component></div>
       </div>
 
-      <div v-if="!this.page && this.fetchedSongs" class="col-md-12 p-0 d-flex justify-content-center">
+      <div v-if="!this.page && this.fetchedSongs" id="photos" class="col-md-12 p-0 d-flex justify-content-center">
         <div id="app" class="p-0 w-100 d-flex justify-content-center"><feed-component @getArtists="getArtists" :page="page" :data="dataSongs"></feed-component></div>
       </div>
     </div>
@@ -50,21 +50,6 @@
       this.getAccessToken();
     },
     methods: {
-      async handleIGUsername() {
-        if(this.igUsername == "") {
-          this.fetcheIGError = "Username can't be empty"
-        } else {
-          const resIG = await fetch(`https://www.instagram.com/` + this.igUsername + `/?__a=1`)
-          const dataIG = await resIG.json();
-          if(dataIG['graphql'] == undefined) {
-            this.fetchedIG = false;
-            this.fetcheIGError = "Username not found";
-          } else {
-            this.dataIG = dataIG['graphql'];
-            this.fetchedIG = true;
-          }
-        }
-      },
       getArtists() {
         this.page = true;
       },
@@ -92,6 +77,22 @@
         const dataSongs = await resSongs.json();
         this.dataSongs = dataSongs;
         this.fetchedSongs = true;
+        console.log(this.dataSongs);
+      },
+      async handleIGUsername() {
+        if(this.igUsername == "") {
+          this.fetcheIGError = "Username can't be empty"
+        } else {
+          const resIG = await fetch(`https://www.instagram.com/` + this.igUsername + `/?__a=1`)
+          const dataIG = await resIG.json();
+          if(dataIG['graphql'] == undefined) {
+            this.fetchedIG = false;
+            this.fetcheIGError = "Username not found";
+          } else {
+            this.dataIG = dataIG['graphql'];
+            this.fetchedIG = true;
+          }
+        }
       }
     }
   }
