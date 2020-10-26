@@ -101,7 +101,15 @@
       generateImg() {
         let node = this.$refs.main;
 
-        domtoimage.toBlob(node)
+        const scale = 2;
+        domtoimage.toBlob(node, {
+          width: node.clientWidth * scale,
+          height: node.clientHeight * scale,
+          style: {
+            transform: 'scale('+scale+')',
+            transformOrigin: 'top left'
+          }
+        })
         .then(function (blob) {
             window.saveAs(blob, 'InstafyFeed.png');
         });
