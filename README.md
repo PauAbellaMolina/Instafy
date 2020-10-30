@@ -1,24 +1,4 @@
-# instafy
+# Instafy
+Get your Spotify top artists and tracks in an Instagram Feed Format.
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+I developed this to learn Vue and the Spotify API, but it would be really cool if this went viral on Twitter.
