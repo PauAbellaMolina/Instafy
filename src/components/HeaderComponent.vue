@@ -5,20 +5,20 @@
     </div>
     <div id="header" class="d-flex flex-column">
       <div class="d-flex flex-row">
-        <img class="imgProfile" :src="this.data['user']['profile_pic_url']" /> <!-- We can also use the hd profile img but it's not worth from the performance prespective -->
+        <img class="imgProfile col-md-4" :src="this.data['user']['profile_pic_url']" /> <!-- We can also use the hd profile img but it's not worth from the performance prespective -->
         <div class="w-100 ml-4 d-flex flex-column justify-content-center">
           <div class="userInfoCounters d-flex flex-row justify-content-around">
             <div class="d-flex flex-column align-items-center">
-              <span>{{this.data['user']['edge_owner_to_timeline_media']['count']}}</span>
-              <span class="label">posts</span>
+              <span class="data">{{this.data['user']['edge_owner_to_timeline_media']['count']}}</span>
+              <span class="label">Posts</span>
             </div>
             <div class="d-flex flex-column align-items-center">
-              <span>{{this.data['user']['edge_followed_by']['count']}}</span>
-              <span class="label">followers</span>
+              <span class="data">{{this.data['user']['edge_followed_by']['count']}}</span>
+              <span class="label">Followers</span>
             </div>
             <div class="d-flex flex-column align-items-center">
-              <span>{{this.data['user']['edge_follow']['count']}}</span>
-              <span class="label">following</span>
+              <span class="data">{{this.data['user']['edge_follow']['count']}}</span>
+              <span class="label">Following</span>
             </div>
           </div>
         </div>
@@ -26,9 +26,9 @@
       <div class="w-75 pt-2 ml-2 d-flex flex-column align-content-between">
         <span><strong>{{this.data['user']['full_name']}}</strong></span>
         <!-- DECIDE IF WE SHOULD SHOW THE USERS BIO OR OUR TEXT HMM -->
-        <!-- <span>{{this.data['user']['biography']}}</span> -->
-        <span>Cool right?</span>
-        <span>Come get your Instafy Feed here:</span>
+        <span>{{this.data['user']['biography']}}</span>
+        <!-- <span>Cool right?</span>
+        <span>Come get your Instafy Feed here:</span> -->
         <a href="https://instafy.me">instafy.me</a>
       </div>
       <button class="followButton w-100 mt-3 d-flex justify-content-center" v-on:click="generateImg">
@@ -43,9 +43,24 @@
     props: {
       data: Object,
     },
+    beforeMount() {
+      this.data['user']['edge_followed_by']['count'] = this.formatCounters(this.data['user']['edge_followed_by']['count']);
+      this.data['user']['edge_follow']['count'] = this.formatCounters(this.data['user']['edge_follow']['count']);
+    },
     methods: {
       generateImg() {
         this.$emit('generateImg');
+      },
+      formatCounters(num) {
+        if(num > 999 && num < 10000){
+          return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+        }else if(num > 9999 && num < 1000000){
+          return (num/1000).toFixed(0) + 'K';
+        }else if(num > 1000000){
+          return (num/1000000).toFixed(0) + 'M';
+        }else if(num < 1000){
+          return num;
+        }
       }
     }
   } 
