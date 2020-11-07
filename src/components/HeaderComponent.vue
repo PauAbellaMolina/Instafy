@@ -26,13 +26,13 @@
       <div class="w-75 pt-2 ml-2 d-flex flex-column align-content-between">
         <span><strong>{{this.data['user']['full_name']}}</strong></span>
         <!-- DECIDE IF WE SHOULD SHOW THE USERS BIO OR OUR TEXT HMM -->
-        <span>{{this.data['user']['biography']}}</span>
+        <span class="bio">{{this.data['user']['biography']}}</span>
         <!-- <span>Cool right?</span>
         <span>Come get your Instafy Feed here:</span> -->
-        <a href="https://instafy.me">instafy.me</a>
+        <p class="mt-2 font-weight-bold">Get your feed at <span class="font-weight-normal">➜</span> <a href="https://instafy.me">instafy.me</a></p>
       </div>
-      <button class="followButton w-100 mt-3 d-flex justify-content-center" v-on:click="generateImg">
-        <span class="w-75 p-1 d-flex justify-content-center">Share</span>
+      <button class="followButton w-100 d-flex justify-content-center" v-on:click="generateImg">
+        <span class="w-75 p-1 d-flex justify-content-center">Download</span>
       </button>
     </div>
   </div>
@@ -46,6 +46,7 @@
     beforeMount() {
       this.data['user']['edge_followed_by']['count'] = this.formatCounters(this.data['user']['edge_followed_by']['count']);
       this.data['user']['edge_follow']['count'] = this.formatCounters(this.data['user']['edge_follow']['count']);
+      console.log(this.data['user'])
     },
     methods: {
       generateImg() {

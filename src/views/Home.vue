@@ -15,9 +15,9 @@
     methods: {
       loginSpotify() {
         /* DEV */
-        // window.location.href = "https://accounts.spotify.com/authorize?client_id=4cd5b87b8c4f4bc9a737094b8a0fd486&redirect_uri=http://localhost:8080&scope=user-top-read&response_type=token";
+        window.location.href = "https://accounts.spotify.com/authorize?client_id=4cd5b87b8c4f4bc9a737094b8a0fd486&redirect_uri=http://localhost:8080&scope=user-top-read&response_type=token";
         /* WEB */
-        window.location.href = "https://accounts.spotify.com/authorize?client_id=4cd5b87b8c4f4bc9a737094b8a0fd486&redirect_uri=https://instafy.netlify.app&scope=user-top-read&response_type=token";
+        // window.location.href = "https://accounts.spotify.com/authorize?client_id=4cd5b87b8c4f4bc9a737094b8a0fd486&redirect_uri=https://instafy.netlify.app&scope=user-top-read&response_type=token";
       }
 
     }

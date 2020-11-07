@@ -19,6 +19,10 @@
       <div v-if="!this.page && this.fetchedSongs" id="photos" class="col-md-12 p-0 d-flex justify-content-center">
         <div id="app" class="p-0 w-100 d-flex justify-content-center"><feed-component @getArtists="getArtists" :page="page" :data="dataSongs"></feed-component></div>
       </div>
+
+      <!-- <div class="test">
+        <p class="test">Get yours at instafy.me</p>
+      </div> -->
     </div>
 
     <span id="support" class="d-flex flex-column">
