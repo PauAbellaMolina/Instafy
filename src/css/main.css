@@ -146,6 +146,9 @@ body {
             padding: .16em;
             border-radius: 100%;
         }
+        #header .bio {
+            white-space: pre-wrap;
+        }
         #header .followButton {
             background-color: #3199F3;
             color: inherit;
