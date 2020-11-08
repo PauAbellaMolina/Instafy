@@ -13,7 +13,7 @@
         </div>
         <div v-if="!isTrue()">
           <img id="children" :src="item.album.images[0].url" v-on:click="showLabel" />
-          <p id="childrenLabel" ref="label" class="d-none justify-content-center align-items-center text-center" v-on:click="hideLabel">{{item.name}}</p>
+          <p id="childrenLabel" ref="label" class="justify-content-center align-items-center text-center" v-on:click="hideLabel">{{item.name}}</p>
         </div>
       </div>
     </div>
