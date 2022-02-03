@@ -95,7 +95,7 @@
         if(this.igUsername == "") {
           this.fetcheIGError = "Username can't be empty"
         } else {
-          const resIG = await fetch(`https://www.instagram.com/` + this.igUsername + `/?__a=1`)
+          const resIG = await fetch(`https://www.instagram.com/` + this.igUsername + `/?__a=1`, {mode: 'no-cors',})
           const dataIG = await resIG.json();
           if(dataIG['graphql'] == undefined) {
             this.fetchedIG = false;
